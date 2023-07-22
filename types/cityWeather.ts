@@ -1,6 +1,12 @@
-export interface SingleWeather {
+export interface ForecastedWeatherItem {
+  date: Date,
+  icon: string,
+  temp_max: number,
+  temp_min: number
+}
+
+export interface CityWeather {
   city: string,
-  currentDate: Date,
   coord: {
     lon: number,
     lat: number
@@ -16,10 +22,8 @@ export interface SingleWeather {
   },
   visibility: number, // miles
   humidity: number, // %
-  forecast: {
-    date: Date,
-    icon: string,
-    temp_max: number,
-    temp_min: number
-  }[]
+  forecast: ForecastedWeatherItem[]
 }
+
+const day = new Date()
+console.log(day)
