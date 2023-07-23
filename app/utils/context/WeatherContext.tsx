@@ -2,10 +2,47 @@ import { createContext, useContext, useState } from "react";
 import { CityWeather } from "../../../types/cityWeather";
 import axios, { AxiosError, isAxiosError } from "axios";
 
+interface CityData {
+  // "id": number,
+  name: string;
+  // "state": string,
+  // "country": string,
+  coord: {
+    lon: number;
+    lat: number;
+  };
+}
+type CityList = CityData[];
+
+const MOCKUP_CITYLIST: CityList = [
+  {
+    name: "Luján",
+    coord: {
+      lon: -59.105,
+      lat: -34.570278,
+    },
+  },
+  {
+    name: "Lujiawan",
+    coord: {
+      lon: 106.583481,
+      lat: 36.374409,
+    },
+  },
+  {
+    name: "Santa Rosa Jauregui",
+    coord: {
+      lon: -100.449997,
+      lat: 20.73333,
+    },
+  },
+];
+
 interface WeatherContextProps {
   currentLocation: CityWeather | null;
   loading: boolean;
   error: string;
+  cityList: CityList;
   getWeather: (lat: number, lon: number) => void;
 }
 
@@ -33,6 +70,7 @@ const WeatherContext = createContext<WeatherContextProps>({
   currentLocation: null,
   loading: false,
   error: "",
+  cityList: MOCKUP_CITYLIST,
   getWeather: () => {},
 });
 
@@ -70,7 +108,13 @@ const WeatherContextProvider = ({ children }: React.PropsWithChildren) => {
 
   return (
     <WeatherContext.Provider
-      value={{ currentLocation, error, loading, getWeather }}
+      value={{
+        currentLocation,
+        error,
+        loading,
+        getWeather,
+        cityList: MOCKUP_CITYLIST,
+      }}
     >
       {children}
     </WeatherContext.Provider>

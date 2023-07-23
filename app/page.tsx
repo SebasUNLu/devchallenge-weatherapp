@@ -1,5 +1,6 @@
 "use client";
 
+import MainPage from "./components/MainPage/MainPage";
 import { useWeatherContext } from "./utils/context/WeatherContext";
 
 export default function Home() {
@@ -16,13 +17,8 @@ export default function Home() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      {
-        currentLocation && <h1 className="font-bold text-lg">{currentLocation.city}</h1>
-      }
-      <button className="p-2 rounded bg-green-800" onClick={handleClick}>
-        press me
-      </button>
+    <main className="flex min-h-screen flex-col items-center">
+      <MainPage />
     </main>
   );
 }
