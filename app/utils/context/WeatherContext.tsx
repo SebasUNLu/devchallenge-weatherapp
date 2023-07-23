@@ -1,9 +1,9 @@
 import { createContext, useContext, useState } from "react";
 import { CityWeather } from "../../../types/cityWeather";
-import axios from "axios";
+import axios, { AxiosError, isAxiosError } from "axios";
 
 interface WeatherContextProps {
-  currentLocation: CityWeather;
+  currentLocation: CityWeather | null;
   loading: boolean;
   error: string;
   getWeather: (lat: number, lon: number) => void;
@@ -30,32 +30,43 @@ const EMPTY_LOCATION: CityWeather = {
 };
 
 const WeatherContext = createContext<WeatherContextProps>({
-  currentLocation: EMPTY_LOCATION,
+  currentLocation: null,
   loading: false,
   error: "",
   getWeather: () => {},
 });
 
 const WeatherContextProvider = ({ children }: React.PropsWithChildren) => {
-  const [currentLocation, setCurrentLocation] =
-    useState<CityWeather>(EMPTY_LOCATION);
+  const [currentLocation, setCurrentLocation] = useState<CityWeather | null>(
+    null
+  );
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  const getWeather = (lat: number, lon: number) => {
-    setLoading(true);
-    setError('')
-
-    console.log(process.env.NEXT_PUBLIC_API_URL)
-    console.log(process.env.OPENWEATHER_KEY)
-
-    // const response = axios.get(
-    //   `api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${process.env}`
-    // ).then(data => console.log(data));
-
-    setLoading(false);
+  type GetCityWeather = {
+    message: string;
+    cityWeather: CityWeather;
   };
 
+  const getWeather = async (lat: number, lon: number) => {
+    setLoading(true);
+    setError("");
+    try {
+      console.log("getting info...");
+      await axios
+        .get<GetCityWeather>(`/api/weather?lat=${lat}&lon=${lon}`)
+        .then((res) => res.data)
+        .then((data) => {
+          console.log(data.cityWeather);
+          setCurrentLocation(data.cityWeather);
+        });
+    } catch (error) {
+      if (isAxiosError(error)) console.log(error.response?.data.message);
+      else console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <WeatherContext.Provider
@@ -69,4 +80,3 @@ const WeatherContextProvider = ({ children }: React.PropsWithChildren) => {
 export default WeatherContextProvider;
 
 export const useWeatherContext = () => useContext(WeatherContext);
-

@@ -16,11 +16,7 @@ export async function GET(req: NextRequest) {
 
   try {
     const { data: singleData, status: singleStatus } = await axios.get<Api_single_city>(`${singleApiRoute}?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`).then()
-    console.log('Single data ', singleData)
-    console.log('Single status ', singleStatus)
     const { data: forecastData, status: forecastStatus } = await axios.get<Api_forecast_city>(`${forecastApiRoute}?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`).then()
-    console.log('Forecast data ', forecastData)
-    console.log('Forecast status ', forecastStatus)
     let lastDayRecorded: string | undefined = undefined;
     let forecastedDays: ForecastedWeatherItem[] = [];
     forecastData.list.forEach((forecast) => {
@@ -36,6 +32,7 @@ export async function GET(req: NextRequest) {
         forecastedDays.push(newForecastItem);
       }
     })
+    const [first, ...restOfDays] = forecastedDays
     const newCityWeather: CityWeather = {
       city: singleData.name,
       coord: {
@@ -53,7 +50,7 @@ export async function GET(req: NextRequest) {
         icon: singleData.weather[0].icon,
         temp: singleData.main.temp,
       },
-      forecast: forecastedDays
+      forecast: restOfDays
     }
     return NextResponse.json({ message: 'you did it', cityWeather: newCityWeather })
   } catch (error) {
@@ -62,7 +59,7 @@ export async function GET(req: NextRequest) {
     } else {
       console.log('unexpected error: ', error);
     }
-    return NextResponse.json({ message: 'Error' }, { status: 500 });
+    return NextResponse.json({ message: 'Hubo un error en el servidor. Vuelva a intentar más tarde' }, { status: 500 });
   }
 
 }
