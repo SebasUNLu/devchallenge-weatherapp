@@ -3,6 +3,7 @@
 import { useWeatherContext } from "@/app/utils/context/WeatherContext";
 import React from "react";
 import { MdGpsFixed } from "react-icons/md";
+import TempDiv from "./TempDiv";
 
 const MainTemp = () => {
   const { currentLocation, loading } = useWeatherContext();
@@ -22,7 +23,8 @@ const MainTemp = () => {
           <MdGpsFixed className="h-6 w-6" color="white" height={22} width={22} />
         </button>
       </div>
-      {/*  */}
+      {/* Temp Div */}
+      <TempDiv />
     </div>
   );
 };

@@ -25,3 +25,12 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.cloudBackground {
+  z-index: 0;
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  max-width: initial;
+}
