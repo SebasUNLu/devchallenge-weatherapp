@@ -1,18 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import { CityWeather } from "../../../types/cityWeather";
 import axios, { AxiosError, isAxiosError } from "axios";
-
-interface CityData {
-  // "id": number,
-  name: string;
-  // "state": string,
-  // "country": string,
-  coord: {
-    lon: number;
-    lat: number;
-  };
-}
-type CityList = CityData[];
+import { CityData, CityList } from "@/types/CityData";
 
 const MOCKUP_CITYLIST: CityList = [
   {
