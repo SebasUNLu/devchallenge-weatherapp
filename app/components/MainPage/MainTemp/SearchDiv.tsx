@@ -28,10 +28,10 @@ const SearchDiv = ({ open = false, callbackFnc }: SeachDivProps) => {
   const searchCities = () => {
     if (!inputValue) {
       setFilteredCities([]);
-      return
+      return;
     }
     const filteredResults = cityList.filter((city) => {
-      if (city.name.match(inputValue)) return true;
+      if (city.name.toLowerCase().match(inputValue.toLowerCase())) return true;
       return false;
     });
     setFilteredCities(filteredResults);
@@ -84,9 +84,11 @@ interface CitySearchItemProps {
 }
 
 const CitySearchItem = ({ name, coord }: CitySearchItemProps) => {
+  const { getWeather } = useWeatherContext();
   const handleclick = () => {
     console.log(coord);
-    // TODO Funcionalidad
+    // TODO Funcionalidad para que tome las coordenadas
+    getWeather(name)
   };
 
   return (

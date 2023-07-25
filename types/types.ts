@@ -4,7 +4,8 @@ interface Api_single_city {
     lat: number
   },
   weather: {
-    icon: string
+    icon: string,
+    main: string
   }[],
   main: {
     temp: number, // Temperatura a mostrar grande

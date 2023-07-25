@@ -13,7 +13,8 @@ export interface CityWeather {
   },
   weather: {
     icon: string,
-    temp: number // ºC
+    temp: number, // ºC
+    main: string
   },
   airPressure: number,
   wind: {

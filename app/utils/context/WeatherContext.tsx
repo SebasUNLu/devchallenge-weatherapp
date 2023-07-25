@@ -1,14 +1,14 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { CityWeather } from "../../../types/cityWeather";
 import axios, { AxiosError, isAxiosError } from "axios";
 import { CityData, CityList } from "@/types/CityData";
 
 const MOCKUP_CITYLIST: CityList = [
   {
-    name: "Luján",
+    name: "Lujan",
     coord: {
-      lon: -59.105,
       lat: -34.570278,
+      lon: -59.105,
     },
   },
   {
@@ -32,7 +32,9 @@ interface WeatherContextProps {
   loading: boolean;
   error: string;
   cityList: CityList;
-  getWeather: (lat: number, lon: number) => void;
+  // TODO cambiar esto 
+  // getWeather: (lat: number, lon: number) => void;
+  getWeather: (city: string) => void;
 }
 
 const EMPTY_LOCATION: CityWeather = {
@@ -48,6 +50,7 @@ const EMPTY_LOCATION: CityWeather = {
   weather: {
     icon: "",
     temp: 0,
+    main: ''
   },
   wind: {
     deg: 0,
@@ -70,10 +73,35 @@ const WeatherContextProvider = ({ children }: React.PropsWithChildren) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
+  useEffect(() => {
+    // TODO cambiar para que sea el actual
+    getWeatherMOCK('Lujiawan');
+  }, []);
+
   type GetCityWeather = {
     message: string;
     cityWeather: CityWeather;
   };
+
+  const getWeatherMOCK =async(city: string)=>{
+    setLoading(true);
+    setError("");
+    try {
+      console.log("getting info...");
+      await axios
+        .get<GetCityWeather>(`/api/weather/${city}`)
+        .then((res) => res.data)
+        .then((data) => {
+          console.log(data.cityWeather);
+          setCurrentLocation(data.cityWeather);
+        });
+    } catch (error) {
+      if (isAxiosError(error)) console.log(error.response?.data.message);
+      else console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  }
 
   const getWeather = async (lat: number, lon: number) => {
     setLoading(true);
@@ -101,7 +129,8 @@ const WeatherContextProvider = ({ children }: React.PropsWithChildren) => {
         currentLocation,
         error,
         loading,
-        getWeather,
+        // TODO cambiar esto
+        getWeather: getWeatherMOCK,
         cityList: MOCKUP_CITYLIST,
       }}
     >

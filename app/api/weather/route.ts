@@ -49,6 +49,7 @@ export async function GET(req: NextRequest) {
       weather: {
         icon: singleData.weather[0].icon,
         temp: singleData.main.temp,
+        main: singleData.weather[0].main
       },
       forecast: restOfDays
     }
