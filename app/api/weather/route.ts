@@ -24,7 +24,7 @@ export async function GET(req: NextRequest) {
       if (!lastDayRecorded || lastDayRecorded !== dateCrop) {
         lastDayRecorded = dateCrop;
         const newForecastItem: ForecastedWeatherItem = {
-          date: new Date(forecast.dt_txt),
+          date: forecast.dt_txt,
           icon: forecast.weather[0].icon,
           temp_max: forecast.main.temp_max,
           temp_min: forecast.main.temp_min,

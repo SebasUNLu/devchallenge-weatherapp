@@ -9,6 +9,7 @@ import { FaLocationDot } from "react-icons/fa6";
 import { useWeatherContext } from "@/app/utils/context/WeatherContext";
 import generateIcon from "../../../utils/WeatherIconGenerator";
 import { DAYS, MONTHS } from "@/app/utils/Days&Months";
+import { getTodayAsString } from "@/app/utils/GetDateAsString";
 
 const TempDiv = () => {
   const { currentLocation } = useWeatherContext();
@@ -52,7 +53,7 @@ const TempDiv = () => {
       {/* Today . day */}
       {/* <h2 className="self-center text-[#88869D]">Today · Fri, 5 Jun</h2> */}
       <h2 className="self-center text-[#88869D]">
-        Today · {currentDay}, {currentDate} {currentMonth}
+        {getTodayAsString()}
       </h2>
       {/* Location */}
       <div className="flex items-center justify-center text-[#88869D]">

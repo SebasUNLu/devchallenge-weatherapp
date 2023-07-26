@@ -1,6 +1,6 @@
 import React from 'react';
 
-const WeatherInfolOader = () => {
+const WeatherInfoLoader = () => {
   return (
     <div className=''>
       loading weather info
@@ -8,4 +8,4 @@ const WeatherInfolOader = () => {
   );
 };
 
-export default WeatherInfolOader;
+export default WeatherInfoLoader;
