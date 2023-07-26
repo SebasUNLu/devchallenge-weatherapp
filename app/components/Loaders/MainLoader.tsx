@@ -4,8 +4,8 @@ import React from "react";
 
 const MainLoader = () => {
   return (
-    <div>
-      Loading...
+    <div className="bg-[#1E213A]">
+      Loading Main...
     </div>
   );
 };

@@ -87,12 +87,10 @@ const WeatherContextProvider = ({ children }: React.PropsWithChildren) => {
     setLoading(true);
     setError("");
     try {
-      console.log("getting info...");
       await axios
         .get<GetCityWeather>(`/api/weather/${city}`)
         .then((res) => res.data)
         .then((data) => {
-          console.log(data.cityWeather);
           setCurrentLocation(data.cityWeather);
         });
     } catch (error) {
@@ -107,12 +105,10 @@ const WeatherContextProvider = ({ children }: React.PropsWithChildren) => {
     setLoading(true);
     setError("");
     try {
-      console.log("getting info...");
       await axios
         .get<GetCityWeather>(`/api/weather?lat=${lat}&lon=${lon}`)
         .then((res) => res.data)
         .then((data) => {
-          console.log(data.cityWeather);
           setCurrentLocation(data.cityWeather);
         });
     } catch (error) {

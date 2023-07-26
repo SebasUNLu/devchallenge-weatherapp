@@ -25,6 +25,3 @@ export interface CityWeather {
   humidity: number, // %
   forecast: ForecastedWeatherItem[]
 }
-
-const day = new Date()
-console.log(day)

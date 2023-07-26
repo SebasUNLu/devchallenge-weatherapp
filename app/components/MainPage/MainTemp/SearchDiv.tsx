@@ -86,7 +86,6 @@ interface CitySearchItemProps {
 const CitySearchItem = ({ name, coord }: CitySearchItemProps) => {
   const { getWeather } = useWeatherContext();
   const handleclick = () => {
-    console.log(coord);
     // TODO Funcionalidad para que tome las coordenadas
     getWeather(name)
   };

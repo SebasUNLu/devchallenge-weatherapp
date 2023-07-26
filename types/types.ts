@@ -69,9 +69,3 @@ interface Api_forecast_city {
   }
 }
 
-
-const DATE = '2023-07-21 15:00:00';
-const today = new Date(DATE)
-
-console.log(today)
-console.log(today)

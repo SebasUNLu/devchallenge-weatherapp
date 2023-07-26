@@ -8,23 +8,7 @@ import Image from "next/image";
 import { FaLocationDot } from "react-icons/fa6";
 import { useWeatherContext } from "@/app/utils/context/WeatherContext";
 import generateIcon from "../../../utils/WeatherIconGenerator";
-
-const MONTHS = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-];
-
-const DAYS = ["Dom", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+import { DAYS, MONTHS } from "@/app/utils/Days&Months";
 
 const TempDiv = () => {
   const { currentLocation } = useWeatherContext();

@@ -10,7 +10,6 @@ import snowIcon from '@/public/weather_icons/Snow.png'
 import thunderstormIcon from '@/public/weather_icons/Thunderstorm.png'
 
 const generateIcon = (iconStr: string) => {
-  console.log(iconStr)
   switch (iconStr.slice(0, 2)) {
     case '01d': return clearIcon;
     case '02d': return lightCloudIcon;

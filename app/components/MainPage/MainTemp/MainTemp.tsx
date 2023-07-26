@@ -11,9 +11,10 @@ const MainTemp = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleClick = () => {
-    console.log("open search bar...");
     setMenuOpen(true);
   };
+
+
 
   return (
     <>
