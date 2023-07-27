@@ -26,7 +26,7 @@ const TempDiv = () => {
         <Image
           src={cloudBG}
           alt="background image"
-          className="cloudBackground"
+          className="cloudBackground max-w-xs w-full"
         />
         <Image
           src={generateIcon(currentLocation?.weather.icon)}

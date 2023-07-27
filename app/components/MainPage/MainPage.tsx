@@ -11,8 +11,8 @@ const MainPage = () => {
   if (loading) return <MainLoader />;
 
   return (
-    <div className="w-full h-full">
-      {loading ? <MainLoader /> : <MainTemp />}
+    <div className="w-full lg:w-2/5 h-full">
+      <MainTemp />
     </div>
   );
 };
