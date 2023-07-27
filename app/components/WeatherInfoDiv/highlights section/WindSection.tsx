@@ -1,7 +1,7 @@
 "use client";
 
 import { useWeatherContext } from "@/app/utils/context/WeatherContext";
-import React, { useState } from "react";
+import React from "react";
 import { FaArrowCircleUp } from "react-icons/fa";
 
 const WindSection = () => {
