@@ -17,7 +17,7 @@ const HumiditySection = () => {
         <p className="font-bold text-5xl">{humidity}</p>%
       </div>
       {/* Barra de porcentaje */}
-      <div className="w-full flex flex-col">
+      <div className="w-full max-w-xs flex flex-col">
         <div className="w-full flex justify-between">
           <p className="text-[#A09FB1] font-bold text-base">0</p>
           <p className="text-[#A09FB1] font-bold text-base">50</p>

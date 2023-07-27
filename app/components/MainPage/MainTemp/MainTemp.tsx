@@ -14,15 +14,13 @@ const MainTemp = () => {
     setMenuOpen(true);
   };
 
-
-
   return (
     <>
       <div className="w-full min-h-screen bg-[#1E213A] flex flex-col">
         {/* search div */}
         <div className="w-full p-2 flex justify-between items-center">
           <button
-            className="p-2 rounded bg-[#6E707A] shadow-lg"
+            className="p-2 rounded bg-[#6E707A] hover:bg-[#6E707AAA] text-white shadow-md"
             onClick={handleClick}
           >
             Search for places
