@@ -4,6 +4,7 @@ import { useWeatherContext } from '@/app/utils/context/WeatherContext';
 import React from 'react';
 import WindSection from './WindSection';
 import HumiditySection from './HumiditySection';
+import VisibilitySection from './VisibilitySection';
 
 const HighlightSection = () => {
   const {currentLocation} = useWeatherContext()
@@ -15,6 +16,7 @@ const HighlightSection = () => {
       {/* humidity */}
       <HumiditySection />
       {/* visibility */}
+      <VisibilitySection />
       {/* wind air pressure */}
     </div>
   );

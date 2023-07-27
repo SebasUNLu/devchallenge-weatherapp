@@ -5,7 +5,7 @@ import React from "react";
 
 const HumiditySection = () => {
   const { currentLocation } = useWeatherContext();
-  if (!currentLocation) return <p>No current Wind loaded</p>;
+  if (!currentLocation) return <p>No current Humidity loaded</p>;
 
   const { humidity } = currentLocation;
 
