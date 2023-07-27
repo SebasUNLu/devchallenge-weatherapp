@@ -5,6 +5,7 @@ import UnitsOptions from './UnitsOptions';
 import ForecastSection from './forecast section/ForecastSection';
 import { useWeatherContext } from '@/app/utils/context/WeatherContext';
 import WeatherInfoLoader from '../Loaders/WeatherInfoLoader';
+import HighlightSection from './highlights section/HighlightSection';
 const WeatherInfoDiv = () => {
   
   const{loading} = useWeatherContext()
@@ -18,6 +19,7 @@ const WeatherInfoDiv = () => {
       {/* Div forecast */}
       <ForecastSection />
       {/* Div 4 info */}
+      <HighlightSection />
     </div>
   );
 };

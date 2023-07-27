@@ -16,7 +16,6 @@ const ForecastCard = ({
   tomorrowFlag = false,
 }: ForecastCardProps) => {
   const { date, icon, temp_max, temp_min } = forecast;
-  console.log(typeof date);
   return (
     <div className="bg-[#1E213A] text-white my-4 p-2 flex flex-col items-center">
       {tomorrowFlag ? 'Tomorrow' : getDateAsStringFromString(date)}
