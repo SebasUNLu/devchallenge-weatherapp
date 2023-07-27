@@ -7,7 +7,6 @@ import TempDiv from "./TempDiv";
 import SearchDiv from "./SearchDiv";
 
 const MainTemp = () => {
-  const { currentLocation, loading } = useWeatherContext();
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleClick = () => {

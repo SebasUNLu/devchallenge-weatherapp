@@ -17,13 +17,8 @@ const TempDiv = () => {
   // TODO poner un Loader apropiado
   if (!currentLocation) return <h1>Weather not loaded</h1>;
 
-  const today = new Date();
-  const currentDay = DAYS[today.getDay()];
-  const currentMonth = MONTHS[today.getMonth()];
-  const currentDate = today.getDate();
-
   return (
-    <div className="h-full w-full flex flex-col">
+    <div className="h-[500px] w-full justify-evenly flex flex-col">
       {/* Icon and cloud bg */}
       <div
         className={`w-full min-h-[200px] relative flex justify-center items-center`}
