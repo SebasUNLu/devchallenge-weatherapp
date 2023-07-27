@@ -1,13 +1,10 @@
-'use client'
-
-import { useWeatherContext } from '@/app/utils/context/WeatherContext';
 import React from 'react';
 import WindSection from './WindSection';
 import HumiditySection from './HumiditySection';
 import VisibilitySection from './VisibilitySection';
+import AirSection from './AirSection';
 
 const HighlightSection = () => {
-  const {currentLocation} = useWeatherContext()
   return (
     <div className='flex flex-col w-full gap-8'>
       <p className='text-white font-bold text-2xl'>Today's Highlights</p>
@@ -18,6 +15,7 @@ const HighlightSection = () => {
       {/* visibility */}
       <VisibilitySection />
       {/* wind air pressure */}
+      <AirSection />
     </div>
   );
 };
