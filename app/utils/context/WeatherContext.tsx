@@ -32,7 +32,8 @@ interface WeatherContextProps {
   loading: boolean;
   error: string;
   cityList: CityList;
-  // TODO cambiar esto 
+  limitCallsReached: boolean;
+  // TODO cambiar esto
   // getWeather: (lat: number, lon: number) => void;
   getWeather: (city: string) => void;
 }
@@ -50,7 +51,7 @@ const EMPTY_LOCATION: CityWeather = {
   weather: {
     icon: "",
     temp: 0,
-    main: ''
+    main: "",
   },
   wind: {
     deg: 0,
@@ -63,6 +64,7 @@ const WeatherContext = createContext<WeatherContextProps>({
   loading: false,
   error: "",
   cityList: MOCKUP_CITYLIST,
+  limitCallsReached: false,
   getWeather: () => {},
 });
 
@@ -72,10 +74,11 @@ const WeatherContextProvider = ({ children }: React.PropsWithChildren) => {
   );
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [limitCallsReached, setLimitCallsReached] = useState(false);
 
   useEffect(() => {
     // TODO cambiar para que sea el actual
-    getWeatherMOCK('Lujiawan');
+    getWeatherMOCK("Lujiawan");
   }, []);
 
   type GetCityWeather = {
@@ -83,7 +86,8 @@ const WeatherContextProvider = ({ children }: React.PropsWithChildren) => {
     cityWeather: CityWeather;
   };
 
-  const getWeatherMOCK =async(city: string)=>{
+  const getWeatherMOCK = async (city: string) => {
+    setLimitCallsReached(false);
     setLoading(true);
     setError("");
     try {
@@ -94,14 +98,19 @@ const WeatherContextProvider = ({ children }: React.PropsWithChildren) => {
           setCurrentLocation(data.cityWeather);
         });
     } catch (error) {
-      if (isAxiosError(error)) console.log(error.response?.data.message);
-      else console.log(error);
+      if (isAxiosError(error)) {
+        if (error.response?.status === 403) {
+          console.log("means there are no more calls");
+          setLimitCallsReached(true);
+        } else setError(error.response?.data.message);
+      } else console.log(error);
     } finally {
       setLoading(false);
     }
-  }
+  };
 
   const getWeather = async (lat: number, lon: number) => {
+    setLimitCallsReached(false);
     setLoading(true);
     setError("");
     try {
@@ -125,6 +134,7 @@ const WeatherContextProvider = ({ children }: React.PropsWithChildren) => {
         currentLocation,
         error,
         loading,
+        limitCallsReached,
         // TODO cambiar esto
         getWeather: getWeatherMOCK,
         cityList: MOCKUP_CITYLIST,

@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 
+let counter = 0
+
 export async function GET(req: NextRequest) {
-  return NextResponse.json({ message: 'you did it', cityWeather: MOCK_LUJAWAN })
+  return NextResponse.json({ cityWeather: MOCK_LUJAWAN })
 }
 
 

@@ -7,7 +7,7 @@ const WeatherInfoLoader = () => {
       <div className="">
         <ThreeDots />
       </div>
-      Loading Main...
+      Cargando información del clima...
     </div>
   );
 };

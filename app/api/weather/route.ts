@@ -2,7 +2,32 @@ import { NextRequest, NextResponse } from "next/server";
 import axios from 'axios'
 import { CityWeather, ForecastedWeatherItem } from "@/types/cityWeather";
 
+let apiCallCounter = 0;
+let lastResetDate = new Date();
+
+const CALL_LIMIT = 300;
+
+function isLimitExceeded() {
+  const currentDate = new Date();
+  const isSameDay = currentDate.toDateString() === lastResetDate.toDateString();
+
+  if (!isSameDay) {
+    // Reiniciar el contador si ha pasado un día desde el último reinicio
+    apiCallCounter = 0;
+    lastResetDate = currentDate;
+  }
+
+  return apiCallCounter >= CALL_LIMIT;
+}
+
+function incrementCounter() {
+  apiCallCounter++;
+}
+
 export async function GET(req: NextRequest) {
+  if (isLimitExceeded()) {
+    return NextResponse.json({ message: 'No hay mas llamadas' }, { status: 403 })
+  }
   const { searchParams } = new URL(req.url);
   const lon = searchParams.get("lon");
   const lat = searchParams.get("lat");
@@ -53,6 +78,7 @@ export async function GET(req: NextRequest) {
       },
       forecast: restOfDays
     }
+    incrementCounter()
     return NextResponse.json({ message: 'you did it', cityWeather: newCityWeather })
   } catch (error) {
     if (axios.isAxiosError(error)) {
