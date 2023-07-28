@@ -40,10 +40,13 @@ const SearchDiv = ({ open = false, callbackFnc }: SeachDivProps) => {
 
   return (
     <div
-      className={`fixed flex flex-col w-full h-full p-2 top-0 bg-[#1E213A] transition-all duration-200 z-20 ${openStyle}`}
+      className={`fixed lg:absolute flex flex-col w-full h-full p-2 top-0 bg-[#1E213A] transition-all duration-200 z-20 ${openStyle}`}
     >
       {/* Close menu button */}
-      <div className="w-full flex cursor-pointer p-2 mb-6 justify-end" onClick={handleClick}>
+      <div
+        className="w-full flex cursor-pointer p-2 mb-6 justify-end"
+        onClick={handleClick}
+      >
         <RxCross2
           width={28}
           height={28}

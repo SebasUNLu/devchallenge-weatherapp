@@ -15,7 +15,7 @@ const MainTemp = () => {
 
   return (
     <>
-      <div className="w-full min-h-screen bg-[#1E213A] flex flex-col">
+      <div className="w-full min-h-screen bg-[#1E213A] flex flex-col relative">
         {/* search div */}
         <div className="w-full p-2 flex justify-between items-center">
           <button
@@ -35,9 +35,9 @@ const MainTemp = () => {
         </div>
         {/* Temp Div */}
         <TempDiv />
-      </div>
       {/* Search Menu */}
       <SearchDiv open={menuOpen} callbackFnc={() => setMenuOpen(false)} />
+      </div>
     </>
   );
 };
