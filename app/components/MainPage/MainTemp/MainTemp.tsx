@@ -9,6 +9,8 @@ import SearchDiv from "./SearchDiv";
 const MainTemp = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const { error } = useWeatherContext();
+
   const handleClick = () => {
     setMenuOpen(true);
   };
@@ -34,9 +36,16 @@ const MainTemp = () => {
           </button>
         </div>
         {/* Temp Div */}
-        <TempDiv />
-      {/* Search Menu */}
-      <SearchDiv open={menuOpen} callbackFnc={() => setMenuOpen(false)} />
+        {error ? (
+          <div className="text-white font-semibold bg-[#1E213A] m-auto w-full p-4 h-full flex flex-col justify-center items-center">
+            <div className="text-red-500 font-bold text-7xl">X</div>
+            <p className="text-center">{error}</p>
+          </div>
+        ) : (
+          <TempDiv />
+        )}
+        {/* Search Menu */}
+        <SearchDiv open={menuOpen} callbackFnc={() => setMenuOpen(false)} />
       </div>
     </>
   );

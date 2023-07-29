@@ -6,7 +6,7 @@ import { useWeatherContext } from "@/app/utils/context/WeatherContext";
 import MainLoader from "../Loaders/MainLoader";
 
 const MainPage = () => {
-  const { loading, limitCallsReached } = useWeatherContext();
+  const { loading, limitCallsReached, error } = useWeatherContext();
 
   if (loading) return <MainLoader />;
 

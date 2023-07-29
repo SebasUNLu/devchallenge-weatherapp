@@ -103,10 +103,11 @@ const WeatherContextProvider = ({ children }: React.PropsWithChildren) => {
           console.log("means there are no more calls");
           setLimitCallsReached(true);
         } else setError(error.response?.data.message);
-      } else console.log(error);
+      } else setError("Ha ocurrido un error. Vuelva a intentarlo más tarde");
     } finally {
       setLoading(false);
     }
+    setError("Ha ocurrido un error. Vuelva a intentarlo más tarde");
   };
 
   const getWeather = async (lat: number, lon: number) => {
