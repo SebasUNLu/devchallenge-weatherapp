@@ -9,7 +9,7 @@ import SearchDiv from "./SearchDiv";
 const MainTemp = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const { error } = useWeatherContext();
+  const { error, getCurrentLocationWeather } = useWeatherContext();
 
   const handleClick = () => {
     setMenuOpen(true);
@@ -21,12 +21,15 @@ const MainTemp = () => {
         {/* search div */}
         <div className="w-full p-2 flex justify-between items-center">
           <button
-            className="p-2 rounded bg-[#6E707A] hover:bg-[#6E707AAA] text-white shadow-md"
+            className="p-2 rounded bg-[#6E707A] hover:bg-[#6E707AAA] text-white shadow-md transition-all duration-300"
             onClick={handleClick}
           >
             Search for places
           </button>
-          <button className="bg-[#6E707A] rounded-full p-2">
+          <button
+            className="bg-[#6E707A] hover:bg-[#6E707AAA] rounded-full p-2 transition-all duration-300"
+            onClick={() => getCurrentLocationWeather()}
+          >
             <MdGpsFixed
               className="h-6 w-6"
               color="white"

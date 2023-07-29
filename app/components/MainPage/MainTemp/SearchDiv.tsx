@@ -74,7 +74,7 @@ const SearchDiv = ({ open = false, callbackFnc }: SeachDivProps) => {
         </button>
       </div>
       {/* List of cities */}
-      <div className="p-2">
+      <div className="p-2 mt-2 overflow-auto">
         {filteredCities.map((city, index) => {
           return (
             <CitySearchItem
@@ -105,8 +105,7 @@ const CitySearchItem = ({ name, coord }: CitySearchItemProps) => {
   const [hovered, setHovered] = useState(false);
 
   const handleclick = () => {
-    // TODO Funcionalidad para que tome las coordenadas
-    getWeather(name);
+    getWeather(lat, lon);
   };
 
   return (

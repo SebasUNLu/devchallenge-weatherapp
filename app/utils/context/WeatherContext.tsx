@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { CityWeather } from "../../../types/cityWeather";
 import axios, { AxiosError, isAxiosError } from "axios";
 import { CityData, CityList } from "@/types/CityData";
+import listOfCoords from "../../utils/cityList/city.list.json";
 
 const MOCKUP_CITYLIST: CityList = [
   {
@@ -33,9 +34,8 @@ interface WeatherContextProps {
   error: string;
   cityList: CityList;
   limitCallsReached: boolean;
-  // TODO cambiar esto
-  // getWeather: (lat: number, lon: number) => void;
-  getWeather: (city: string) => void;
+  getWeather: (lat: number, lon: number) => void;
+  getCurrentLocationWeather: () => void;
 }
 
 const EMPTY_LOCATION: CityWeather = {
@@ -63,9 +63,10 @@ const WeatherContext = createContext<WeatherContextProps>({
   currentLocation: null,
   loading: false,
   error: "",
-  cityList: MOCKUP_CITYLIST,
+  cityList: listOfCoords as CityList,
   limitCallsReached: false,
   getWeather: () => {},
+  getCurrentLocationWeather: () => {},
 });
 
 const WeatherContextProvider = ({ children }: React.PropsWithChildren) => {
@@ -77,37 +78,13 @@ const WeatherContextProvider = ({ children }: React.PropsWithChildren) => {
   const [limitCallsReached, setLimitCallsReached] = useState(false);
 
   useEffect(() => {
-    // TODO cambiar para que sea el actual
-    getWeatherMOCK("Lujiawan");
+    getCurrentLocationWeather();
+    // setLoading(false)
   }, []);
 
   type GetCityWeather = {
     message: string;
     cityWeather: CityWeather;
-  };
-
-  const getWeatherMOCK = async (city: string) => {
-    setLimitCallsReached(false);
-    setLoading(true);
-    setError("");
-    try {
-      await axios
-        .get<GetCityWeather>(`/api/weather/${city}`)
-        .then((res) => res.data)
-        .then((data) => {
-          setCurrentLocation(data.cityWeather);
-        });
-    } catch (error) {
-      if (isAxiosError(error)) {
-        if (error.response?.status === 403) {
-          console.log("means there are no more calls");
-          setLimitCallsReached(true);
-        } else setError(error.response?.data.message);
-      } else setError("Ha ocurrido un error. Vuelva a intentarlo más tarde");
-    } finally {
-      setLoading(false);
-    }
-    setError("Ha ocurrido un error. Vuelva a intentarlo más tarde");
   };
 
   const getWeather = async (lat: number, lon: number) => {
@@ -122,11 +99,30 @@ const WeatherContextProvider = ({ children }: React.PropsWithChildren) => {
           setCurrentLocation(data.cityWeather);
         });
     } catch (error) {
-      if (isAxiosError(error)) console.log(error.response?.data.message);
-      else console.log(error);
+      if (isAxiosError(error)) {
+        if (error.response?.status === 403) {
+          console.log("means there are no more calls");
+          setLimitCallsReached(true);
+        } else setError(error.response?.data.message);
+      } else setError("Ha ocurrido un error. Vuelva a intentarlo más tarde");
     } finally {
       setLoading(false);
     }
+  };
+
+  const getCurrentLocationWeather = () => {
+    setLoading(true);
+    navigator.geolocation.getCurrentPosition(
+      async (pos) => {
+        const { latitude, longitude } = pos.coords;
+        await getWeather(latitude, longitude);
+        setLoading(false);
+      },
+      () => {
+        setError("No se ha podido cargar la información de su ubicación.");
+        setLoading(false);
+      }
+    );
   };
 
   return (
@@ -136,9 +132,9 @@ const WeatherContextProvider = ({ children }: React.PropsWithChildren) => {
         error,
         loading,
         limitCallsReached,
-        // TODO cambiar esto
-        getWeather: getWeatherMOCK,
-        cityList: MOCKUP_CITYLIST,
+        getWeather,
+        getCurrentLocationWeather,
+        cityList: listOfCoords as CityList,
       }}
     >
       {children}

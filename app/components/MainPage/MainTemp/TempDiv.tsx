@@ -14,7 +14,6 @@ import { getTodayAsString } from "@/app/utils/GetDateAsString";
 const TempDiv = () => {
   const { currentLocation } = useWeatherContext();
 
-  // TODO poner un Loader apropiado
   if (!currentLocation) return <h1>Weather not loaded</h1>;
 
   return (
