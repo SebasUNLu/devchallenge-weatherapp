@@ -1,3 +1,5 @@
+'use client'
+
 import { createContext, useContext, useEffect, useState } from "react";
 import { CityWeather } from "../../../types/cityWeather";
 import axios, { AxiosError, isAxiosError } from "axios";
