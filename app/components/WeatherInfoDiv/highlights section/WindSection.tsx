@@ -34,7 +34,7 @@ const WindSection = () => {
   const degreesStyle = `rotate-[` + deg + `deg]`;
 
   return (
-    <div className="text-white w-full flex flex-col justify-center items-center bg-[#1E213A] p-6 gap-6">
+    <div className="text-white w-full h-full max-w-sm flex flex-col justify-center items-center bg-[#1E213A] p-6 gap-6">
       <h2 className="font-medium text-base">Wind Status</h2>
       <div className="flex items-center font-base text-4xl">
         <p className="font-bold text-5xl mr-2">{speed}</p>

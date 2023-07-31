@@ -8,7 +8,7 @@ const HighlightSection = () => {
   return (
     <div className="flex flex-col w-full gap-8">
       <p className="text-white font-bold text-2xl">Today's Highlights</p>
-      <div className="flex flex-col w-full gap-8 lg:grid lg:grid-cols-2">
+      <div className="flex flex-col items-center w-full gap-8 lg:grid lg:grid-cols-2">
         {/* wind status */}
         <WindSection />
         {/* humidity */}

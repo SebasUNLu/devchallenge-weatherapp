@@ -17,10 +17,10 @@ const ForecastCard = ({
 }: ForecastCardProps) => {
   const { date, icon, temp_max, temp_min } = forecast;
   return (
-    <div className="bg-[#1E213A] text-white my-4 p-2 flex flex-col items-center">
+    <div className="bg-[#1E213A] max-w-[13em] min-w-[10em] lg:min-w-[8em] justify-self-center text-white my-4 p-2 flex flex-col items-center">
       {tomorrowFlag ? 'Tomorrow' : getDateAsStringFromString(date)}
       <Image src={generateIcon(icon)} alt="icon_weather" className="w-20 h-20" />
-      <div className="w-full flex justify-evenly">
+      <div className="w-full flex justify-evenly gap-4">
         <p>º{temp_max}</p>
         <p>º{temp_min}</p>
       </div>

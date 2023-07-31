@@ -12,7 +12,7 @@ const VisibilitySection = () => {
   const { visibility } = currentLocation;
   
   return (
-    <div className="text-white w-full flex flex-col justify-center items-center bg-[#1E213A] p-6 gap-6">
+    <div className="text-white w-full h-full max-w-sm flex flex-col justify-center items-center bg-[#1E213A] p-6 gap-6">
       <h2 className="font-medium text-base">Visibility</h2>
       {/* miles */}
       <div className="font-normal text-4xl flex gap-2">
