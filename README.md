@@ -1,6 +1,6 @@
 <!-- Please update value in the {}  -->
 
-<h1 align="center">{Your project name}</h1>
+<h1 align="center">DevChallenge - Weather App</h1>
 
 <div align="center">
    Solution for a challenge from  <a href="http://devchallenges.io" target="_blank">Devchallenges.io</a>.
@@ -8,11 +8,11 @@
 
 <div align="center">
   <h3>
-    <a href="https://{your-demo-link.your-domain}">
+    <a href="https://devchallenge-weatherapp-eu2tfkrtq-sebasunlu.vercel.app/">
       Demo
     </a>
     <span> | </span>
-    <a href="https://{your-url-to-the-solution}">
+    <a href="https://devchallenges.io/solutions/cnHWzqauY921qA9YsRK9">
       Solution
     </a>
     <span> | </span>
@@ -37,21 +37,20 @@
 
 ## Overview
 
-![screenshot](https://user-images.githubusercontent.com/16707738/92399059-5716eb00-f132-11ea-8b14-bcacdc8ec97b.png)
+![image](https://github.com/SebasUNLu/devchallenge-weatherapp/assets/72535215/c2afb02f-ce48-429a-b06b-9acddad6ac2b)
 
-Introduce your projects by taking a screenshot or a gif. Try to tell visitors a story about your project by answering:
+The classic weather app, which lets you check the current weather, and the forecast for the next 5 days, of your current location, and even search for other cities around the world.
 
-- Where can I see your demo?
-- What was your experience?
-- What have you learned/improved?
-- Your wisdom? :)
+Working on this app was quite the experience. I know it doesn't look like as good as it should, but I did put everything of me into this.
+
+You can test the app [here](https://devchallenge-weatherapp-eu2tfkrtq-sebasunlu.vercel.app/).
 
 ### Built With
 
 <!-- This section should list any major frameworks that you built your project using. Here are a few examples.-->
 
 - [React](https://reactjs.org/)
-- [Vue.js](https://vuejs.org/)
+- [Next.js](https://nextjs.org/)
 - [Tailwind](https://tailwindcss.com/)
 
 ## Features
@@ -61,6 +60,12 @@ Introduce your projects by taking a screenshot or a gif. Try to tell visitors a 
 This application/site was created as a submission to a [DevChallenges](https://devchallenges.io/challenges) challenge. The [challenge](https://devchallenges.io/challenges/mM1UIenRhK808W8qmLWv) was to build an application to complete the given user stories.
 
 ## How To Use
+
+First, the app will ask four your current position, you have to enabled the location feature of your browser (otherwise, will tell you that it couldn't load the weather of your location). When loaded, you will se the highlights of today's weather and the forecast of the next 5 days.
+
+There's a search bar you can use to search for the weather in other cities of the world. 
+
+And you can use the location button to re-load the info of your location.
 
 <!-- Example: -->
 
@@ -74,7 +79,7 @@ $ git clone https://github.com/your-user-name/your-project-name
 $ npm install
 
 # Run the app
-$ npm start
+$ npm run dev
 ```
 
 ## Acknowledgements
@@ -83,10 +88,10 @@ $ npm start
 
 - [Steps to replicate a design with only HTML and CSS](https://devchallenges-blogs.web.app/how-to-replicate-design/)
 - [Node.js](https://nodejs.org/)
-- [Marked - a markdown parser](https://github.com/chjj/marked)
+- [Spinner Loaders](https://mhnpd.github.io/react-loader-spinner/)
+- [React Icons](https://react-icons.github.io/react-icons/)
 
 ## Contact
 
-- Website [your-website.com](https://{your-web-site-link})
-- GitHub [@your-username](https://{github.com/your-usermame})
-- Twitter [@your-twitter](https://{twitter.com/your-username})
+- GitHub [SebasUNLu](https://github.com/SebasUNLu)
+- Linkedin [Sebastián Marchetti](https://www.linkedin.com/in/sebasti%C3%A1n-pedro-marchetti/)
