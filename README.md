@@ -8,7 +8,7 @@
 
 <div align="center">
   <h3>
-    <a href="https://devchallenge-weatherapp-eu2tfkrtq-sebasunlu.vercel.app/">
+    <a href="https://devchallenge-weatherapp-ocs9h3hg7-sebasunlu.vercel.app/">
       Demo
     </a>
     <span> | </span>
@@ -43,7 +43,7 @@ The classic weather app, which lets you check the current weather, and the forec
 
 Working on this app was quite the experience. I know it doesn't look like as good as it should, but I did put everything of me into this.
 
-You can test the app [here](https://devchallenge-weatherapp-eu2tfkrtq-sebasunlu.vercel.app/).
+You can test the app [here](https://devchallenge-weatherapp-ocs9h3hg7-sebasunlu.vercel.app/).
 
 ### Built With
 
